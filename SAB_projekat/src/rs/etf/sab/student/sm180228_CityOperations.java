@@ -3,44 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rs.etf.sab.student.classes;
+package rs.etf.sab.student;
 import java.util.List;
-import rs.etf.sab.operations.AddressOperations;
+import rs.etf.sab.operations.CityOperations;
 
 /**
  *
  * @author stoja
  */
-public class sm180228_AddressOperations implements AddressOperations {
+public class sm180228_CityOperations implements CityOperations{
 
     @Override
-    public int deleteAddresses(String name, int number) {
-        return 500;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean deleteAdress(int idAddress) {
+    public int insertCity(String string, String string1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int deleteAllAddressesFromCity(int idCity) {
+    public int deleteCity(String... strings) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Integer> getAllAddresses() {
+    public boolean deleteCity(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Integer> getAllAddressesFromCity(int idCity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int insertAddress(String street, int number, int cityId, int xCord, int yCord) {
+    public List<Integer> getAllCities() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
