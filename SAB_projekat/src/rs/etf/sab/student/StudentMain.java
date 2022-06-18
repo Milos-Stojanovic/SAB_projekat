@@ -21,7 +21,9 @@ public class StudentMain {
         UserOperations userOperations = new sm180228_UserOperations();
         VehicleOperations vehicleOperations = new sm180228_VehicleOperations();
 
-
+//        cityOperations.insertCity("Beograd", "11000");
+//        addressOperations.insertAddress("Cingrijina", 2, 1, 5, 4);
+        
         TestHandler.createInstance(
                 addressOperations,
                 cityOperations,
