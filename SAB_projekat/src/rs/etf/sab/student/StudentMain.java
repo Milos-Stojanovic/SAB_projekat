@@ -23,6 +23,7 @@ public class StudentMain {
 
 //        cityOperations.insertCity("Beograd", "11000");
 //        addressOperations.insertAddress("Cingrijina", 2, 1, 5, 4);
+//        courierOperations.insertCourier("ASD", "021365698");
         
         TestHandler.createInstance(
                 addressOperations,
