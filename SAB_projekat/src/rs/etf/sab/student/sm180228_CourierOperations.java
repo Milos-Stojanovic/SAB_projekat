@@ -61,6 +61,21 @@ public class sm180228_CourierOperations implements CourierOperations {
             Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        String proveraKurirVecPostoji = "select IdKor from Kurir ku join korisnik ko on (ku.idkor=ko.idkor) where ko.korisnickoime=? and ku.VozackaDozvola = ?";
+        try(PreparedStatement ps = conn.prepareStatement(proveraKurirVecPostoji)){
+            
+            ps.setString(1, courierUsername);
+            ps.setString(2, driverLicenceNumber);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                System.out.println("Greska, vec postoji kurir sa prilozenom korisnickim imenom i dozvolom!");
+                return false;
+            }
+            
+        } catch(SQLException ex){
+            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         String proveraZahtevPostojiId = "select Podnosilac from ZahtevZaKurira where Podnosilac = ? and BrojVozacke != ?";
         try(PreparedStatement ps = conn.prepareStatement(proveraZahtevPostojiId)){
             
