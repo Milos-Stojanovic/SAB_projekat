@@ -20,7 +20,140 @@ public class sm180228_GeneralOperations implements GeneralOperations {
     @Override
     public void eraseAll() {
         Connection conn = DB.getInstance().getConnection();
-        String query = "delete from Administrator where 1=1";
+        
+        String query = "delete from Parkirano where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        query = "delete from Ponuda where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        query = "delete from Isporuka where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        query = "delete from ZahtevPaket where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        query = "delete from Paket where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+          query = "delete from Kupac where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+        query = "delete from Vozio where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        query = "delete from Vozi where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        query = "delete from Administrator where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        query = "delete from ZahtevZaKurira where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        query = "delete from Vozilo where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        query = "delete from LokacijaMagazina where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        query = "delete from Kurir where 1=1";
+
+        try ( PreparedStatement stm = conn.prepareStatement(query)) {
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        query = "delete from Korisnik where 1=1";
 
         try ( PreparedStatement stm = conn.prepareStatement(query)) {
 
@@ -41,128 +174,6 @@ public class sm180228_GeneralOperations implements GeneralOperations {
         }
 
         query = "delete from Grad where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        query = "delete from Isporuka where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-          query = "delete from Korisnik where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-
-        query = "delete from Kupac where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        query = "delete from Kurir where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        query = "delete from LokacijaMagazina where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        query = "delete from Paket where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        query = "delete from Ponuda where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        query = "delete from Vozi where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        query = "delete from Vozilo where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        query = "delete from Vozio where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        query = "delete from ZahtevPaket where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        query = "delete from ZahtevZaKurira where 1=1";
 
         try ( PreparedStatement stm = conn.prepareStatement(query)) {
 

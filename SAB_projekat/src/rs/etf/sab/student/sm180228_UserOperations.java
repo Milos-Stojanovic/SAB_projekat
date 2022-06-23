@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package rs.etf.sab.student;
+import com.microsoft.sqlserver.jdbc.StringUtils;
 import com.sun.istack.internal.NotNull;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,8 +37,48 @@ public class sm180228_UserOperations implements UserOperations {
             System.out.println("Greska, prezime mora poceti velikim slovom!");
             return false;
         }
-        if (!Pattern.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()[{}]:;',?/*~$^+=<>]).{8,}$", password)){
-            System.out.println("Greska, lozinka je nepravilnog formata!");
+        
+        if (password.length() < 8) {
+            System.out.println("Lozinka mora imati bar 8 karaktera!");
+            return false;
+        }
+
+        boolean upper = false;
+        boolean lower = false;
+        boolean number = false;
+        boolean sign = false;
+
+        for (int i = 0; i < password.length(); ++i) {
+
+            if (Character.isUpperCase(password.charAt(i))) {
+                upper = true;
+            } else if (Character.isLowerCase(password.charAt(i))) {
+                lower = true;
+            } else if (StringUtils.isInteger("" + password.charAt(i))) {
+                number = true;
+            } else {
+                sign = true;
+            }
+
+        }
+
+        if (upper == false) {
+            System.out.println("Lozinka mora imati bar 1 veliko slovo");
+            return false;
+        }
+
+        if (lower == false) {
+            System.out.println("Lozinka mora imati bar 1 malo slovo");
+            return false;
+        }
+
+        if (number == false) {
+            System.out.println("Lozinka mora imati bar 1 cifru");
+            return false;
+        }
+
+        if (sign == false) {
+            System.out.println("Lozinka mora imati bar 1 znak");
             return false;
         }
         
@@ -94,9 +135,26 @@ public class sm180228_UserOperations implements UserOperations {
         // proveri prvo da korisnik nije vec admin
         // ako nije, ubaci ga kao admina
         Connection conn = DB.getInstance().getConnection();
+        
+        String proveraKorisnikPostoji = "select idkor from korisnik where korisnickoime=?";
+        int IdKor = -1;
+        
+        try(PreparedStatement ps = conn.prepareStatement(proveraKorisnikPostoji)){
+            
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if(!rs.next()){
+                System.out.println("Greska, ovaj korisnik ne postoji!");
+                return false;
+            }
+            IdKor = rs.getInt(1);
+            
+        } catch(SQLException ex){
+            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         String provera = "select a.idkor from administrator a join korisnik k on (a.idkor=k.idkor)"
                 + " where k.korisnickoime=?";
-        int IdKor = -1;
         
         try(PreparedStatement ps = conn.prepareStatement(provera)){
             
@@ -106,7 +164,6 @@ public class sm180228_UserOperations implements UserOperations {
                 System.out.println("Greska, ovaj korisnik je vec administrator!");
                 return false;
             }
-            IdKor = rs.getInt(1);
             
         } catch(SQLException ex){
             Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
