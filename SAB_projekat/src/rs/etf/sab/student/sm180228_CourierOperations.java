@@ -61,7 +61,7 @@ public class sm180228_CourierOperations implements CourierOperations {
             Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String proveraKurirVecPostoji = "select IdKor from Kurir ku join korisnik ko on (ku.idkor=ko.idkor) where ko.korisnickoime=? and ku.VozackaDozvola = ?";
+        String proveraKurirVecPostoji = "select ku.IdKor from Kurir ku join korisnik ko on (ku.idkor=ko.idkor) where ko.korisnickoime=? and ku.VozackaDozvola = ?";
         try(PreparedStatement ps = conn.prepareStatement(proveraKurirVecPostoji)){
             
             ps.setString(1, courierUsername);

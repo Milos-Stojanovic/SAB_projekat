@@ -24,6 +24,22 @@ public class StudentMain {
 //        cityOperations.insertCity("Beograd", "11000");
 //        addressOperations.insertAddress("Cingrijina", 2, 1, 5, 4);
 //        courierOperations.insertCourier("ASD", "021365698");
+
+//        final String street = "Bulevar kralja Aleksandra";
+//        final int number = 73;
+//        final int idCity = cityOperations.insertCity("Belgrade", "11000");
+//        final int idAddress = addressOperations.insertAddress(street, number, idCity, 10, 10);
+//        final String username = "crno.dete";
+//        final String firstName = "Svetislav";
+//        final String lastName = "Kisprdilov";
+//        final String password = "Test_123";
+//        userOperations.insertUser(username, firstName, lastName, password, idAddress);
+//        userOperations.getAllUsers().contains(username);
+//
+//        courierRequestOperation.insertCourierRequest("blabla1", "1234567");
+//        courierRequestOperation.insertCourierRequest("blabla1", "1234567");
+//        System.out.println(courierRequestOperation.getAllCourierRequests().size());
+//        System.out.println(courierRequestOperation.getAllCourierRequests().contains("blabla"));
         
         TestHandler.createInstance(
                 addressOperations,

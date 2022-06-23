@@ -41,14 +41,14 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String proveraZahtevPostoji = "select ku.idkor from kurir ku join ZahtevZaKurira zzk on (ku.idkor=zzk.podnosilac)"
-                + " join korisnik ko on (ku.idkor=ko.idkor) where ko.korisnickoime=? or zzk.brojvozacke=?";
+        String proveraZahtevPostoji = "select ko.idkor from korisnik ko "
+                + " join ZahtevZaKurira zzk on (ko.idkor=zzk.podnosilac) where ko.korisnickoime=? or zzk.brojvozacke=?";
         try(PreparedStatement ps = conn.prepareStatement(proveraZahtevPostoji)){
             
             ps.setString(1, username);
             ps.setString(2, driverLicenceNumber);
             ResultSet rs = ps.executeQuery();
-            if(!rs.next()){
+            if(rs.next()){
                 System.out.println("Greska, zahtev za ovog kurira ili za ovu vozacku vec postoji!");
                 return false;
             }
@@ -59,8 +59,10 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
         
         String query = "insert into ZahtevZaKurira (Podnosilac, BrojVozacke) values (?, ?)";
         String query1 = "select Idkor from korisnik where korisnickoime=?";
+        String queryCheckDuplicate = "select podnosilac from zahtevzakurira where podnosilac=?";
         try(PreparedStatement ps = conn.prepareStatement(query);
-                PreparedStatement ps1 = conn.prepareStatement(query1);){
+                PreparedStatement ps1 = conn.prepareStatement(query1);
+                PreparedStatement ps2 = conn.prepareStatement(queryCheckDuplicate);){
             
             ps1.setString(1, username);
             ResultSet rs1 = ps1.executeQuery();
@@ -70,14 +72,16 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             }
             
             int IdKor = rs1.getInt(1);
+            ps2.setInt(1, IdKor);
+            ResultSet check = ps2.executeQuery();
+            if(check.next()){
+                System.out.println("Greska, ne moze se duplirati PK!");
+                return false;
+            }
+            
             ps.setInt(1, IdKor);
             ps.setString(2, driverLicenceNumber);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                System.out.println("Uspesno dodat zahtev za kurira!");
-                return true;
-            }
-            return false;
+            return 1 == ps.executeUpdate();
             
         } catch(SQLException ex){
             Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,7 +92,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
     @Override
     public boolean deleteCourierRequest(@NotNull String username) {
         Connection conn = DB.getInstance().getConnection();
-        String query = "delete from ZahtevZaKurira where IdKor = (select IdKor from korisnik where korisnickoime=?)";
+        String query = "delete from ZahtevZaKurira where Podnosilac = (select IdKor from korisnik where korisnickoime=?)";
         try(PreparedStatement ps = conn.prepareStatement(query)){
             
             ps.setString(1, username);
@@ -122,16 +126,23 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String proveraRegBrojVecUZahtevima = "select ko.idkor from korisnik ko join zahtevzakurira zzk on (ko.idkor=zzk.podnosilac) where zzk.brojvozacke=?";
-        try(PreparedStatement ps = conn.prepareStatement(proveraRegBrojVecUZahtevima)){
+        String proveraRegBrojVecUZahtevima = "select ko.idkor from korisnik ko join zahtevzakurira zzk on (ko.idkor=zzk.podnosilac) where zzk.brojvozacke=? and ko.korisnickoime!=?";
+        String query = "select idkor from korisnik where korisnickoime=?";
+        try(PreparedStatement ps = conn.prepareStatement(proveraRegBrojVecUZahtevima);
+                PreparedStatement ps1 = conn.prepareStatement(query)){
             
             ps.setString(1, licencePlateNumber);
+            ps.setString(2, username);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 System.out.println("Greska, ovaj broj vozacke se vec nalazi u zahtevima!");
                 return false;
             }
-            IdKor = rs.getInt(1);
+            
+            ps1.setString(1, username);
+            ResultSet rs1 = ps1.executeQuery();
+            if(rs1.next())
+                IdKor = rs1.getInt(1);
             
         } catch(SQLException ex){
             Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,7 +157,6 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
                 System.out.println("Greska, ova vozacka se vec nalazi kod nekog od kurira!");
                 return false;
             }
-            IdKor = rs.getInt(1);
             
         } catch(SQLException ex){
             Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -209,7 +219,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String proveraKurirVecPostoji = "select idkor from kurir where idkor=?";
+        /*String proveraKurirVecPostoji = "select idkor from kurir where idkor=?";
         try(PreparedStatement ps = conn.prepareStatement(proveraKurirVecPostoji)){
             
             ps.setInt(1, IdKor);
@@ -221,13 +231,14 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             
         } catch(SQLException ex){
             Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
-        String proveraZahteva = "delete from ZahtevZaKurira where podnosilac = ?";
+        String proveraZahteva = "select podnosilac from ZahtevZaKurira where podnosilac = ?";
         try(PreparedStatement ps = conn.prepareStatement(proveraZahteva)){
             
             ps.setInt(1, IdKor);
-            if(ps.executeUpdate() == 0){
+            ResultSet rs = ps.executeQuery();
+            if(!rs.next()){
                 System.out.println("Greska, ne postoji zahtev za korisnika sa datim korisnickim imenom!");
                 return false;
             }
@@ -239,6 +250,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
         String napraviKurira = "insert into kurir(IdKor, BrIsporucenihPaketa, Status, OstvarenProfit, VozackaDozvola) values(?, 0, 0, 0, ?)";
         String dohvatiVozacku = "select brojvozacke from zahtevzakurira where podnosilac = ?";
         String brisniZahtev = "delete from ZahtevZaKurira where podnosilac = ?";
+        
         try(PreparedStatement ps = conn.prepareStatement(napraviKurira);
                 PreparedStatement ps1 = conn.prepareStatement(dohvatiVozacku);
                 PreparedStatement ps2 = conn.prepareStatement(brisniZahtev);){
@@ -249,7 +261,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
                 ps.setInt(1, IdKor);
                 ps.setString(2, rs.getString(1));
                 ps2.setInt(1, IdKor);
-                ps2.executeQuery();
+                ps2.executeUpdate();
                 return 1 == ps.executeUpdate();
             }
             return false;
