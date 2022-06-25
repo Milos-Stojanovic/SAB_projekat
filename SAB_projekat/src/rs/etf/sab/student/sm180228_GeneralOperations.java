@@ -41,16 +41,6 @@ public class sm180228_GeneralOperations implements GeneralOperations {
             Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        query = "delete from Isporuka where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         query = "delete from ZahtevPaket where 1=1";
 
         try ( PreparedStatement stm = conn.prepareStatement(query)) {
@@ -60,17 +50,6 @@ public class sm180228_GeneralOperations implements GeneralOperations {
         } catch (SQLException ex) {
             Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        query = "delete from Paket where 1=1";
-
-        try ( PreparedStatement stm = conn.prepareStatement(query)) {
-
-            stm.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(sm180228_GeneralOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         
           query = "delete from Kupac where 1=1";
 
