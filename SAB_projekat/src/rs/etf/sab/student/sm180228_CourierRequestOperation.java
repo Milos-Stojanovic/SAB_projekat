@@ -38,7 +38,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String proveraZahtevPostoji = "select ko.idkor from korisnik ko "
@@ -54,7 +54,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String query = "insert into ZahtevZaKurira (Podnosilac, BrojVozacke) values (?, ?)";
@@ -84,7 +84,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             return 1 == ps.executeUpdate();
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -102,7 +102,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -123,7 +123,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             IdKor = rs.getInt(1);
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String proveraRegBrojVecUZahtevima = "select ko.idkor from korisnik ko join zahtevzakurira zzk on (ko.idkor=zzk.podnosilac) where zzk.brojvozacke=? and ko.korisnickoime!=?";
@@ -145,7 +145,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
                 IdKor = rs1.getInt(1);
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String proveraRegBrojVecUKuririma = "select ko.idkor from korisnik ko join kurir ku on (ko.idkor=ku.idkor) where ku.vozackadozvola=?";
@@ -159,7 +159,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String promeniBrojVozacke = "update ZahtevZaKurira set BrojVozacke=? where Podnosilac=?";
@@ -170,7 +170,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             return 1==ps.executeUpdate();
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
         
@@ -191,7 +191,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             return list;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -216,7 +216,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             IdKor = rs.getInt(1);
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         /*String proveraKurirVecPostoji = "select idkor from kurir where idkor=?";
@@ -230,7 +230,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }*/
         
         String proveraZahteva = "select podnosilac from ZahtevZaKurira where podnosilac = ?";
@@ -244,7 +244,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String napraviKurira = "insert into kurir(IdKor, BrIsporucenihPaketa, Status, OstvarenProfit, VozackaDozvola) values(?, 0, 0, 0, ?)";
@@ -267,7 +267,7 @@ public class sm180228_CourierRequestOperation implements CourierRequestOperation
             return false;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_CourierRequestOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
