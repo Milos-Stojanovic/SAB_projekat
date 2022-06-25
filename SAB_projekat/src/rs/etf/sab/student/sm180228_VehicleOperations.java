@@ -41,7 +41,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String dodajVozilo = "insert into vozilo(TipGoriva, Potrosnja, Nosivost, RegBr) values(?, ?, ?, ?)";
@@ -54,7 +54,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             return 1 == ps.executeUpdate();
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -73,7 +73,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             return brObrisanih;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
@@ -93,7 +93,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             return list;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -120,7 +120,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             IdVoz = rs.getInt(1);
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
             
         String proveraVoziloParkirano = "select idvoz from parkirano where idvoz=?";
@@ -134,7 +134,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String azurirajTipGoriva = "update Vozilo set TipGoriva=? where idVoz=?";
@@ -145,7 +145,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             return 1 == ps.executeUpdate();
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;   
     }
@@ -168,7 +168,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             IdVoz = rs.getInt(1);
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
             
         String proveraVoziloParkirano = "select idvoz from parkirano where idvoz=?";
@@ -182,7 +182,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String azurirajTipGoriva = "update Vozilo set Potrosnja=? where idVoz=?";
@@ -193,7 +193,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             return 1 == ps.executeUpdate();
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -216,7 +216,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             IdVoz = rs.getInt(1);
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
             
         String proveraVoziloParkirano = "select idvoz from parkirano where idvoz=?";
@@ -230,7 +230,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String azurirajTipGoriva = "update Vozilo set Nosivost=? where idVoz=?";
@@ -241,7 +241,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             return 1 == ps.executeUpdate();
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -265,7 +265,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             IdVoz = rs.getInt(1);
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String proveraVoziloParkirano = "select idvoz from parkirano where idvoz=?";
@@ -279,7 +279,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String proveraVoznjaUToku = "select idvoz from vozi where idvoz=?";
@@ -293,7 +293,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String proveraMagacinPostoji = "select idlok from lokacijamagazina where idlok=?";
@@ -307,7 +307,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String parkirajVozilo = "insert into Parkirano(IdVoz, IdLok) values (?, ?)";
@@ -318,7 +318,7 @@ public class sm180228_VehicleOperations implements VehicleOperations {
             return 1 == ps.executeUpdate();
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_VehicleOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return false;

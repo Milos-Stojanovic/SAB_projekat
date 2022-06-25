@@ -34,7 +34,7 @@ public class sm180228_AddressOperations implements AddressOperations {
             return cnt;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_AddressOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
@@ -49,7 +49,7 @@ public class sm180228_AddressOperations implements AddressOperations {
             return 1 == ps.executeUpdate();
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_AddressOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -76,7 +76,7 @@ public class sm180228_AddressOperations implements AddressOperations {
             return cnt;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_AddressOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
@@ -96,7 +96,7 @@ public class sm180228_AddressOperations implements AddressOperations {
             return list;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_AddressOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -126,7 +126,7 @@ public class sm180228_AddressOperations implements AddressOperations {
             return list;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_AddressOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -158,7 +158,7 @@ public class sm180228_AddressOperations implements AddressOperations {
             }
             
         } catch (SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_AddressOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
     }

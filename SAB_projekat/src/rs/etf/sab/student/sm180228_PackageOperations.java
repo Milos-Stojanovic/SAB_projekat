@@ -100,7 +100,7 @@ public class sm180228_PackageOperations implements PackageOperations {
         }
         
         String kreirajPaket = "insert into ZahtevPaket (PocetnaAdresa, ZavrsnaAdresa, IdKor, Tip, Tezina, VremeKreiranjaZahteva) values(?,?,?,?,?,?)";
-        String kreirajIsporuku = "insert into Isporuka(IdPak, StatusIsporuke, cenaIsporuke, Lokacija, VremePrihvatanjaPonude) values (?, 0, 0, ?, NULL)";
+        String kreirajIsporuku = "insert into Ponuda(IdPak, StatusIsporuke, cenaIsporuke, Lokacija, VremePrihvatanjaPonude) values (?, 0, 0, ?, ?)";
         try ( PreparedStatement ps = conn.prepareStatement(kreirajPaket, PreparedStatement.RETURN_GENERATED_KEYS);
                 PreparedStatement ps1 = conn.prepareStatement(kreirajIsporuku)) {
 
@@ -123,6 +123,7 @@ public class sm180228_PackageOperations implements PackageOperations {
                 
                 ps1.setInt(1, rs.getInt(1));
                 ps1.setInt(2, addressFrom);
+                ps1.setTimestamp(3, null);
                 
                 if(1 == ps1.executeUpdate()){
                     System.out.println("Paket je uspesno kreiran!");
@@ -290,10 +291,10 @@ public class sm180228_PackageOperations implements PackageOperations {
     }
 
     @Override
-    public List<Integer> getAllUndeliveredPackages() {
+    public List<Integer> getAllUndeliveredPackages() { // OVO NE RADI?
         Connection conn = DB.getInstance().getConnection();
         List<Integer> list = new ArrayList<>();
-        String query = "select IdPak from Ponuda where StatusIsporuke=1 or StatusIsporuke=2";
+        String query = "select distinct IdPak from Ponuda where StatusIsporuke=1 or StatusIsporuke=2";
         
         try(PreparedStatement ps = conn.prepareStatement(query);
                 ResultSet rs = ps.executeQuery();){
@@ -306,7 +307,7 @@ public class sm180228_PackageOperations implements PackageOperations {
         } catch(SQLException ex){
             Logger.getLogger(sm180228_PackageOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return list;
     }
 
     @Override
@@ -353,12 +354,12 @@ public class sm180228_PackageOperations implements PackageOperations {
     }
 
     @Override
-    public List<Integer> getAllPackagesCurrentlyAtCity(int cityID) {
+    public List<Integer> getAllPackagesCurrentlyAtCity(int cityID) { //OVO NE RADI
         Connection conn = DB.getInstance().getConnection();
         List<Integer> list = new ArrayList<>();
-        String query = "Select IdPak from Ponuda P join ZahtevPaket ZP on (P.IdPak=ZP.IdPak) join Adresa A "
+        String query = "Select distinct P.IdPak from Ponuda P join ZahtevPaket ZP on (P.IdPak=ZP.IdPak) join Adresa A "
                 + "on (P.Lokacija=A.IdAdr) where (Lokacija=PocetnaAdresa or Lokacija=ZavrsnaAdresa) and IdGra=? "
-                + " and StatusIsporuke = 1";
+                + " and (StatusIsporuke != 2)";
         
         try (PreparedStatement ps = conn.prepareStatement(query)) {
 
@@ -368,12 +369,13 @@ public class sm180228_PackageOperations implements PackageOperations {
             while (rs.next()) {
                 list.add(rs.getInt(1));
             }
+            //System.out.println(list);
 
         } catch (SQLException ex) {
             Logger.getLogger(sm180228_PackageOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        query = "Select IdPak from Ponuda P join Adresa A on (P.Lokacija=A.IdAdr) join LokacijaMagazina M on (A.IdAdr=M.IdAdr) where IdGra=? and StatusIsporuke=1";
+        query = "Select IdPak from Ponuda P join Adresa A on (P.Lokacija=A.IdAdr) join LokacijaMagazina M on (A.IdAdr=M.IdAdr) where IdGra=? ";
         try ( PreparedStatement stm = conn.prepareStatement(query)) {
 
             stm.setInt(1, cityID);
@@ -389,7 +391,7 @@ public class sm180228_PackageOperations implements PackageOperations {
         } catch (SQLException ex) {
             Logger.getLogger(sm180228_PackageOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return list;
         
     }
 
@@ -587,7 +589,7 @@ public class sm180228_PackageOperations implements PackageOperations {
     }
 
     @Override
-    public int getCurrentLocationOfPackage(int packageId) {
+    public int getCurrentLocationOfPackage(int packageId) { 
         Connection conn = DB.getInstance().getConnection();
         // proveri da li paket postoji, pa da li je u statusu 2
         // ako ovo sve valja, vrati id grada u kome se paket nalazi
@@ -613,7 +615,9 @@ public class sm180228_PackageOperations implements PackageOperations {
             return -1;
         }
         
-         String proveraAdresa = "select A.IdGra from ZahtevPaket ZP join Ponuda P on (ZP.IdPak=P.IdPak) join Adresa A on (ZP.PocetnaAdresa=A.IdAdr) join Adresa A2 on (ZP.ZavrsnaAdresa=A2.IdAdr) where (Lokacija = PocetnaAdresa or Lokacija = ZavrsnaAdresa) and P.IdPak=? ";
+         String proveraAdresa = "select distinct A.IdGra from ZahtevPaket ZP join Ponuda P on (ZP.IdPak=P.IdPak) join Adresa A on (ZP.PocetnaAdresa=A.IdAdr) join Adresa A2 on (ZP.ZavrsnaAdresa=A2.IdAdr) where (Lokacija = PocetnaAdresa or Lokacija = ZavrsnaAdresa) and P.IdPak=? ";
+         proveraAdresa = "Select distinct A.idgra from Ponuda P join ZahtevPaket ZP on (P.IdPak=ZP.IdPak) join Adresa A "
+                + "on (P.Lokacija=A.IdAdr) where (Lokacija=PocetnaAdresa or Lokacija=ZavrsnaAdresa) and P.idpak=? ";
 
         try ( PreparedStatement ps = conn.prepareStatement(proveraAdresa)) {
 

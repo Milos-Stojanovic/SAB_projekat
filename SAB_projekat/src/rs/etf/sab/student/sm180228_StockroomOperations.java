@@ -48,7 +48,7 @@ public class sm180228_StockroomOperations implements StockroomOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_StockroomOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String query = "insert into lokacijamagazina (IdAdr) values(?)";
@@ -63,7 +63,7 @@ public class sm180228_StockroomOperations implements StockroomOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_StockroomOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return -1;
@@ -89,7 +89,7 @@ public class sm180228_StockroomOperations implements StockroomOperations {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_StockroomOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String provera = "select count(*) from lokacijamagazina lm join adresa a"
@@ -108,7 +108,7 @@ public class sm180228_StockroomOperations implements StockroomOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_StockroomOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String brisanje = "delete from lokacijamagazina where idlok=?";
@@ -119,7 +119,7 @@ public class sm180228_StockroomOperations implements StockroomOperations {
             return 1 == ps.executeUpdate();
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_StockroomOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return false;
@@ -153,7 +153,7 @@ public class sm180228_StockroomOperations implements StockroomOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_StockroomOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
     }
@@ -173,7 +173,7 @@ public class sm180228_StockroomOperations implements StockroomOperations {
             return list;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_StockroomOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

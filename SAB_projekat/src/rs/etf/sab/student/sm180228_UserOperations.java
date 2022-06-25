@@ -94,7 +94,7 @@ public class sm180228_UserOperations implements UserOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_UserOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String proveraAdresaPostoji = "select idadr from adresa where idadr=?";
@@ -108,7 +108,7 @@ public class sm180228_UserOperations implements UserOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_UserOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String query = "insert into korisnik (Ime, Prezime, KorisnickoIme, Sifra, IdAdr) values (?, ?, ?, ?, ?)";
@@ -124,7 +124,7 @@ public class sm180228_UserOperations implements UserOperations {
             return true;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_UserOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return false;
@@ -150,7 +150,7 @@ public class sm180228_UserOperations implements UserOperations {
             IdKor = rs.getInt(1);
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_UserOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String provera = "select a.idkor from administrator a join korisnik k on (a.idkor=k.idkor)"
@@ -166,7 +166,7 @@ public class sm180228_UserOperations implements UserOperations {
             }
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_UserOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String query = "insert into Administrator (IdKor) values (?)";
@@ -176,7 +176,7 @@ public class sm180228_UserOperations implements UserOperations {
             return 1 == ps.executeUpdate();
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_UserOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
         
@@ -215,7 +215,7 @@ public class sm180228_UserOperations implements UserOperations {
                 return cnt;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_UserOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cnt;
     }
@@ -251,7 +251,7 @@ public class sm180228_UserOperations implements UserOperations {
             return brObrisanih;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_UserOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return brObrisanih;
     }
@@ -271,7 +271,7 @@ public class sm180228_UserOperations implements UserOperations {
             return list;
             
         } catch(SQLException ex){
-            Logger.getLogger(sm180228_CityOperations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(sm180228_UserOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
