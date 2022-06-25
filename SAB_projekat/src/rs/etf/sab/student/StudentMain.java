@@ -40,6 +40,8 @@ public class StudentMain {
 //        courierRequestOperation.insertCourierRequest("blabla1", "1234567");
 //        System.out.println(courierRequestOperation.getAllCourierRequests().size());
 //        System.out.println(courierRequestOperation.getAllCourierRequests().contains("blabla"));
+            //generalOperations.eraseAll();
+            //packageOperations.getAcceptanceTime(1);
         
         TestHandler.createInstance(
                 addressOperations,
